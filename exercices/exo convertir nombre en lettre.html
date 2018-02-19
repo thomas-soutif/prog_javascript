@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Entre un nombre</title>
+        <meta charset="utf-8">
+    </head>
+    <body >
+        <h1>Entrer un nombre</h1>
+      <input type="text" id="number"></input>
+      <input type="submit" onClick="convert();">
+  <div id="result" class="result" ></div>
+  
+  <br><br>
+  Le script et le css se trouve dans le fichier html pour des raisons de simplicité (c'est un exercice on regroupe le plus possible)
+  <br>
+  Il peut y avoir quelques bugs , je n'ai pas tout tester
+    </body>
+    <script>
+        
+      function convert(){
+		  "use strict";
+         let number = document.getElementById("number").value;
+		 
+		 if( isNaN(number) || number < 0 || number > 999)
+		 {
+			 document.getElementById('result').innerHTML="Veuillez entrer un nombre entre 0 et 999";
+			 return;
+		 }
+		 if(number == 0)
+		 {
+			 document.getElementById('result').innerHTML="zero";
+			 return;
+		 }
+         let temp = number;
+         let unite = number%10;
+         temp = temp- unite;
+         let dizaine = 0;
+        while(temp%100 !=0)
+          {
+            temp--;
+            dizaine ++;
+          }
+        
+        let centaine = temp / 100;
+        
+        
+        let string = "";
+		let dizUnit = 0;
+		if(dizaine + unite > 10 && dizaine + unite < 17)
+		{
+			dizUnit = convertToLettre(dizaine+unite);
+			
+		}
+		
+        if(centaine != 0 && centaine != 1)
+          {
+            string = convertToLettre(centaine) + ' cent ';
+          }
+		  else if(centaine == 1)
+		  {
+			  string = 'cent ';
+		  }
+		  
+		  
+		  if(dizUnit != 0)
+		  {
+			string = string + dizUnit;
+			document.getElementById('result').innerHTML=string;
+			return;
+		  }
+         if(dizaine != 0)
+          {
+			  var dizaineString = convertToLettre(dizaine);
+            string = string + dizaineString;
+          }
+		  if(unite !=0)
+		  {
+			  var unitString = convertToLettre(unite);
+			  string = string + ' ' + unitString;
+			  
+		  }
+		  
+        
+        
+        document.getElementById('result').innerHTML=string;
+        }
+                  
+      function convertToLettre(chiffre){
+                  
+                  switch(chiffre)
+                  {
+                case 1:
+                   return "un";
+                  break;
+                case 2:
+                  return "deux";
+                  break;
+                case 3:
+                  return "trois";
+                  break;
+                case 4:
+                  return "quatre";
+                  break;
+                case 5:
+                  return "cinq";
+                  break;
+                case 6:
+                  return "six";
+                  break;
+                case 7:
+                  return "sept";
+                  break;
+                case 8:
+                  return "huit";
+                  break;
+                case 9:
+                  return "neuf";
+                  break;
+                case 0:
+                  return "zero";
+                  break;
+                case 10:
+                   return "dix";
+                  break;
+				case 11:
+                   return "onze";
+                  break;
+				case 12:
+                   return "douze";
+                  break;
+				case 13:
+                   return "treize";
+                  break;
+				case 14:
+                   return "quatorze";
+                  break;
+				case 15:
+                   return "quinze";
+                  break;
+				case 16:
+                   return "seize";
+                  break;
+                case 20:
+                  return "vingt";
+                  break;
+                case 30:
+                  return "trente";
+                  break;
+                case 40:
+                  return "quarante";
+                  break;
+                case 50:
+                  return "cinquante";
+                  break;
+                case 60:
+                  return "soixante";
+                  break;
+                case 70:
+                  return "soixante dix";
+                  break;
+                case 80:
+                  return "quatre vingt";
+                  break;
+                case 90:
+                  return "quatre vingt dix";
+                  break;
+                }
+            
+              }
+      
+      
+      
+    </script>
+
+<style>
+  
+  .result {
+    
+    background: whitesmoke;
+    
+    height: 30px;
+    
+    
+  }
+  
+  
+  
+</style>
+</html>
